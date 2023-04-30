@@ -12,14 +12,20 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// handle unknow all request
 Route::fallback(function () {
     return view('common.errors.404');
 });
 
+// login url
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login-page');
 });
+
+Route::prefix('/login')->middleware('guest')
+    ->group(function () {
+        Route::get('login-page', [\App\Http\Controllers\Auth\AuthController::class, 'index'])->name('login-page');
+    });
 
 Route::get('/templates/admin/gentelellaMaster', function () {
     return view('templates.admins.gentelellaMaster.production.index');

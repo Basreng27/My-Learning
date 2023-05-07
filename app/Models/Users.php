@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Models;
+
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Traits\ModelScopes;
+// ==============================
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class Users extends Authenticatable
+{
+    use HasRoles, SoftDeletes;
+    // use HasApiTokens, HasFactory, Notifiable;
+
+    protected $table = 'users'; // teble name
+    protected $keyType = 'string'; // type data primary key
+    protected $logFillable = true; // fillable
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',
+        'username',
+        'email',
+        'password',
+    ]; // field yang di izinkan
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ]; // hiddem field saat ditampilkan menjadi json
+
+    public static function createOne(array $data, $callback = null)
+    {
+        // dd($data);
+        $model = new static;
+        $model->fill($data);
+
+        if ($callback) {
+            $callback($model);
+        }
+
+        $model->save();
+        return $model;
+    }
+}

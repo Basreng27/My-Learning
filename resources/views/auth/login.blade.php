@@ -52,7 +52,8 @@
 
             <div id="register" class="animate form registration_form">
                 <section class="login_content">
-                    <form action="{{ route('proses-regist') }}" method="POST">
+                    {{-- <form action="{{ route('proses-regist') }}" method="POST" id="form-regist"> --}}
+                    <form method="POST" id="form-regist">
                         @csrf
                         <h1>Create Account</h1>
                         <div>
@@ -71,7 +72,7 @@
                         </div>
 
                         <div>
-                            <button type="submit" class="btn btn-default submit">Submit</button>
+                            <button type="submit" id="regist" class="btn btn-default submit">Submit</button>
                         </div>
 
                         <div class="clearfix"></div>
@@ -87,5 +88,48 @@
         </div>
     </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>\
+
+<script>
+    $(document).ready(function() {
+        $('#form-regist').submit(function(event) {
+            event.preventDefault(); // prevent the default behavior of the submit button
+            var formData = $(this).serialize(); // serialize the form data into a URL-encoded string
+            Swal.fire({
+                title: 'Are You Sure You Will Register ?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('{{ route('proses-regist') }}', formData, function(response) {
+                        if (response.email[0] == 'Email sudah digunakan' ||
+                            response.username[0] == 'Username sudah digunakan') {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: response.email[0] + ' Atau ' +
+                                    response.username[0],
+                                footer: ''
+                            })
+                        } else {
+                            Swal.fire(
+                                'Registed!',
+                                'Your personal data has been successfully registered.',
+                                'success'
+                            )
+                        }
+                    });
+                }
+            })
+        });
+    });
+</script>
 
 </html>

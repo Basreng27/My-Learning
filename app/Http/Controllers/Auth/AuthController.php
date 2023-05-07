@@ -48,10 +48,13 @@ class AuthController extends BaseModule
 
         // cek jika $validator gagal
         if ($validator->fails())
-            return $this->serveValidations($validator->errors());
+            return $this->serveJSON($validator->errors());
+        // return $this->serveValidations($validator->errors());
 
         $result = Service::store($request);
 
+        // toastr()->error('An error has occurred please try again later.');
+        // return $this->serveJSON($result)->with('success', 'Data berhasil disimpan!'); // menambahkan notifikasi berhasil
         return $this->serveJSON($result);
     }
 

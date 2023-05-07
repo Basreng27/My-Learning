@@ -39,7 +39,7 @@ class BaseModule extends Controller
     {
         return response()->json([
             'code' => 422,
-            'status' => 'unsuccessfull',
+            'status' => 'fail',
             'message' => _('errors.442'),
             'data' => $validation
         ], 422);
@@ -54,8 +54,8 @@ class BaseModule extends Controller
             $output = [
                 'code' => isset($data['code']) ? $data['code'] : $code,
                 'status' => isset($data['status']) ? $data['status'] : $status,
-                'message' => isset($data['message']) ? $data['status'] : $status,
-                'data' => isset($data['data']) ? $data['status'] : NULL,
+                'message' => isset($data['message']) ? $data['message'] : $message,
+                'data' => isset($data['data']) ? $data['data'] : NULL,
             ];
 
             // extend data table responses

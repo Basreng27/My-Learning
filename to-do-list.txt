@@ -1,0 +1,37 @@
+-> Laravel
+Install Laravel -> Done
+Pasang Template -> Done
+Middleware Login -> DOne
+Login Form -> Done
+Regist Form -> Done
+Regist -> Done
+CSRF Regist -> Done
+Save Database -> Done
+Notif Save SweetAlert2 -> Done
+Validation If Don't Registed -> Done
+Redirect After Regist ->
+Login ->
+CSRF Login ->
+Middleware Page ->
+Dashboard ->
+Activity Log ->
+Module Menu ->
+Make Module ->
+CRUD ->
+CSRF CRUD ->
+Toastr ->
+Upload File ->
+Reviewer ->
+Notification ->
+Print PDF/Excel ->
+Impoert Excel ->
+Impoert Excel Dinamis ->
+RestFull API ->
+Get Data API Movie ->
+Payment Gateway ->
+
+-> React JS
+-> Fluter
+-> C# / C
+-> Python
+

@@ -13,6 +13,7 @@ Redirect After Regist ->
 Login ->
 CSRF Login ->
 Middleware Page ->
+Role In ACL.php (Middleware) ->
 Dashboard ->
 Activity Log ->
 Module Menu ->

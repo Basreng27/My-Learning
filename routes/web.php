@@ -29,6 +29,12 @@ Route::prefix('/login')->middleware('guest')
         Route::post('proses-login', [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name('proses-login');
     });
 
+Route::group(['middleware' => ['verified', 'auth', 'acl']], function () {
+    // Home
+    Route::get('home', [\App\Http\Controllers\Pages\HomeController::class, 'index'])->name('home');
+    Route::get('dashboard', [\App\Http\Controllers\Pages\HomeController::class, 'index'])->name('dashboard');
+});
+
 Route::get('/templates/admin/gentelellaMaster', function () {
     return view('templates.admins.gentelellaMaster.production.index');
 });

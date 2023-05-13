@@ -9,27 +9,30 @@ CSRF Regist -> Done
 Save Database -> Done
 Notif Save SweetAlert2 -> Done
 Validation If Don't Registed -> Done
-Redirect After Regist ->
-Login ->
-CSRF Login ->
-Middleware Page ->
-Role In ACL.php (Middleware) ->
-Dashboard ->
-Activity Log ->
-Module Menu ->
-Make Module ->
-CRUD ->
-CSRF CRUD ->
-Toastr ->
-Upload File ->
-Reviewer ->
-Notification ->
-Print PDF/Excel ->
-Impoert Excel ->
-Impoert Excel Dinamis ->
-RestFull API ->
-Get Data API Movie ->
-Payment Gateway ->
+    Redirect After Regist ->
+    Notification If Fail Regist ->
+Login -> Done
+CSRF Login -> Done
+Middleware Page Login If Was Login -> Done
+    Middleware Page Can't Go Dashboard If Not Login ->
+    Role In ACL.php (Middleware) ->
+Dashboard -> Done
+    Activity Log ->
+    Module Menu ->
+    Make Module ->
+    CRUD ->
+    CSRF CRUD ->
+    Maste Icon ->
+    Toastr ->
+    Upload File ->
+    Reviewer ->
+    Notification ->
+    Print PDF/Excel ->
+    Impoert Excel ->
+    Impoert Excel Dinamis ->
+    RestFull API ->
+    Get Data API Movie ->
+    Payment Gateway ->
 
 -> React JS
 -> Fluter

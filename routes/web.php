@@ -26,6 +26,7 @@ Route::prefix('/login')->middleware('guest')
     ->group(function () {
         Route::get('login-page', [\App\Http\Controllers\Auth\AuthController::class, 'index'])->name('login-page');
         Route::post('proses-regist', [\App\Http\Controllers\Auth\AuthController::class, 'regist'])->name('proses-regist');
+        Route::post('proses-login', [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name('proses-login');
     });
 
 Route::get('/templates/admin/gentelellaMaster', function () {

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Controller;
 use App\Models\Auth;
 use App\Bases\BaseModule;
@@ -14,6 +14,8 @@ use App\Services\UsersServices as Service;
 
 class AuthController extends BaseModule
 {
+    use AuthenticatesUsers;
+
     public function __construct()
     {
         $this->module = 'auth';
@@ -61,7 +63,34 @@ class AuthController extends BaseModule
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            'password' => 'required|string'
+            'password' => 'required|string',
         ]);
+    }
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        if (method_exists($this, 'hasTooManyLoginAttempts') && $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            if ($request->hasSession()) {
+                $request->session()->put('auth.password_confirmed_at', time());
+            }
+
+            // createActivityLog('Berhasil Login');
+
+            return $this->sendLoginResponse($request);
+        }
+
+        $this->incrementLoginAttempts($request);
+
+        // createActivityLog('Gagal Login');
+
+        return $this->sendFailedLoginResponse($request);
     }
 }

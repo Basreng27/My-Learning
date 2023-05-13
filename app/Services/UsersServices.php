@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Crypt; //package untuk encrpy decrypt
 use Ramsey\Uuid\Uuid;
 
 use App\Bases\BaseServices;
-use App\Models\Users as Model;
+use App\Models\User as Model;
 
 // use App\Models\Role;
 

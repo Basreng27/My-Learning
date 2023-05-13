@@ -24,19 +24,21 @@
         <div class="login_wrapper">
             <div class="animate form login_form">
                 <section class="login_content">
-                    <form>
+                    <form action="{{ route('proses-login') }}" method="POST">
+                        @csrf
                         <h1>Login Form</h1>
                         <div>
-                            <input type="text" class="form-control" placeholder="Username" required="" />
+                            <input type="email" class="form-control" name="email" placeholder="Email"
+                                required="" />
                         </div>
 
                         <div>
-                            <input type="password" class="form-control" placeholder="Password" required="" />
+                            <input type="password" class="form-control" name="password" placeholder="Password"
+                                required="" />
                         </div>
 
                         <div>
-                            <a class="btn btn-default submit" href="index.html">Log in</a>
-                            <a class="reset_pass" href="#">Lost your password?</a>
+                            <button type="submit" class="btn btn-default submit">Login</button>
                         </div>
 
                         <div class="clearfix"></div>
@@ -52,7 +54,6 @@
 
             <div id="register" class="animate form registration_form">
                 <section class="login_content">
-                    {{-- <form action="{{ route('proses-regist') }}" method="POST" id="form-regist"> --}}
                     <form method="POST" id="form-regist">
                         @csrf
                         <h1>Create Account</h1>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Pages;
+namespace App\Http\Controllers;
 
 use App\Bases\BaseModule;
 use Illuminate\Support\Facades\Hash;

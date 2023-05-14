@@ -31,8 +31,15 @@ Route::prefix('/login')->middleware('guest')
 
 Route::group(['middleware' => ['verified', 'auth', 'acl']], function () {
     // Home
-    Route::get('home', [\App\Http\Controllers\Pages\HomeController::class, 'index'])->name('home');
-    Route::get('dashboard', [\App\Http\Controllers\Pages\HomeController::class, 'index'])->name('dashboard');
+    Route::get('home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('dashboard', [\App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+    // Admin
+    Route::prefix('/admin')->group(function () {
+        // Menu
+        Route::resource('menu', 'MenuController', ['names' => 'menu']);
+        Route::put('menu/order/save', 'MenuController@saveOrder')->name('menu.saveOrder');
+    });
 });
 
 Route::get('/templates/admin/gentelellaMaster', function () {

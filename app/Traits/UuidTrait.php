@@ -10,9 +10,10 @@ trait UuidTrait
     {
         parent::boot();
 
-        static::creatin(function ($model) {
-            if (empty($model->{$model->getKeyName()}))
+        static::creating(function ($model) {
+            if (empty($model->{$model->getKeyName()})) {
                 $model->{$model->getKeyName()} = Uuid::generate(4)->string;
+            }
         });
     }
 }

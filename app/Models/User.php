@@ -14,7 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasRoles, SoftDeletes;
+    use ModelScopes, HasRoles, SoftDeletes;
     // use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'users'; // teble name
@@ -54,4 +54,16 @@ class User extends Authenticatable
         $model->save();
         return $model;
     }
+
+    public function roles()
+    {
+        // Define a many-to-many relationship with the Role model
+        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id')
+            ->withPivot('model_type');
+    }
+
+    // public function profil()
+    // {
+    //     return $this->belongsTo(Profil::class, 'profil_id', 'id');
+    // }
 }

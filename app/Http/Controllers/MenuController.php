@@ -21,12 +21,13 @@ class MenuController extends BaseModule
         return $this->serveView();
     }
 
-    // public function data(Request $request)
-    // {
-    //     $result = Service::data($request);
-
-    //     return $this->serveJSON($result);
-    // }
+    public function data(Request $request)
+    {
+        echo '<pre>' . print_r(321, true);
+        exit(1);
+        $result = Service::data($request);
+        return $this->serveJSON($result);
+    }
 
     // public function create(Request $request)
     // {
@@ -68,12 +69,12 @@ class MenuController extends BaseModule
     //     return $this->serveJSON($result);
     // }
 
-    // public function destroy($id)
-    // {
-    //     $result = Service::destroy(decrypt($id));
+    public function destroy($id)
+    {
+        $result = Service::destroy(decrypt($id));
 
-    //     return $this->serveJSON($result);
-    // }
+        return $this->serveJSON($result);
+    }
 
     // public function destroys(Request $request)
     // {

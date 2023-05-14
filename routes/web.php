@@ -37,8 +37,12 @@ Route::group(['middleware' => ['verified', 'auth', 'acl']], function () {
     // Admin
     Route::prefix('/admin')->group(function () {
         // Menu
-        Route::resource('menu', 'MenuController', ['names' => 'menu']);
-        Route::put('menu/order/save', 'MenuController@saveOrder')->name('menu.saveOrder');
+        Route::resource('menu', \App\Http\Controllers\MenuController::class, ['names' => 'menu']);
+        Route::delete('menu-destroy/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('menu-destroy');
+        Route::post('menu-create', [\App\Http\Controllers\MenuController::class, 'create'])->name('menu-create');
+        Route::put('menu-edit/{menu}', [\App\Http\Controllers\MenuController::class, 'edit'])->name('menu-edit');
+        Route::get('menu-data', [\App\Http\Controllers\MenuController::class, 'data'])->name('menu-data');
+        Route::put('menu-orderSave', [\App\Http\Controllers\MenuController::class, 'saveOrder'])->name('menu-saveOrder');
     });
 });
 

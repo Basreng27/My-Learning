@@ -68,3 +68,9 @@ CREATE TABLE menu_has_permissions (
 	name VARCHAR(255) NOT NULL,
 	sequence INT DEFAULT 0
 );
+
+<!-- Table role_permissions -->
+CREATE TABLE role_permissions (
+    permission_id UUID REFERENCES permissions (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    role_id UUID REFERENCES roles (id) ON UPDATE CASCADE ON DELETE CASCADE
+);

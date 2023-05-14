@@ -20,42 +20,42 @@ class Acl
         $route_name = $request->route()->getName();
 
         if (!in_array($route_name, $whitelist)) {
-            // // Get role permission from user login
-            // $listRolePermission = auth()->user()->roles->first()->permissions->transform(function ($item) {
-            //     return $item->name;
-            // })->toArray();
+            // Get role permission from user login
+            $listRolePermission = auth()->user()->roles->first()->permissions->transform(function ($item) {
+                return $item->name;
+            })->toArray();
 
-            // // Get controller instance
-            // $controller = $request->route()->controller;
+            // Get controller instance
+            $controller = $request->route()->controller;
 
-            // // Get permission list from controller
-            // $permissionListController = !empty($controller->permissionList) ? $controller->permissionList : [];
+            // Get permission list from controller
+            $permissionListController = !empty($controller->permissionList) ? $controller->permissionList : [];
 
-            // // Check wether permission list in controller was declare ?
-            // if (!empty($permissionListController)) {
+            // Check wether permission list in controller was declare ?
+            if (!empty($permissionListController)) {
 
-            //     // Get module name controller
-            //     $moduleController = $controller->module;
+                // Get module name controller
+                $moduleController = $controller->module;
 
-            //     // Get target method controller
-            //     $targetMethodController = explode('@', $request->route()->action['controller'])[1];
+                // Get target method controller
+                $targetMethodController = explode('@', $request->route()->action['controller'])[1];
 
-            //     // Get current permission name
-            //     $currentPermissionName = null;
-            //     foreach ($permissionListController as $key => $item) {
-            //         if (in_array($targetMethodController, $item)) {
-            //             $currentPermissionName = $moduleController . '-' . $key;
-            //             break;
-            //         }
-            //     }
+                // Get current permission name
+                $currentPermissionName = null;
+                foreach ($permissionListController as $key => $item) {
+                    if (in_array($targetMethodController, $item)) {
+                        $currentPermissionName = $moduleController . '-' . $key;
+                        break;
+                    }
+                }
 
-            //     // If permission name isn't empty, check validation permission
-            //     if ($currentPermissionName != null) {
-            //         if (!in_array($currentPermissionName, $listRolePermission)) {
-            //             abort(403);
-            //         }
-            //     }
-            // }
+                // If permission name isn't empty, check validation permission
+                if ($currentPermissionName != null) {
+                    if (!in_array($currentPermissionName, $listRolePermission)) {
+                        abort(403);
+                    }
+                }
+            }
         }
 
         return $next($request);

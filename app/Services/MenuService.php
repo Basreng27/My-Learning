@@ -11,19 +11,19 @@ use App\Models\Menu as Model;
 
 class MenuService extends BaseServices
 {
-    // public static function data($data)
-    // {
-    //     $cursors = Model::orderBy('sequence')->get();
-    //     $menus = [];
+    public static function data($data)
+    {
+        $cursors = Model::orderBy('sequence')->get();
+        $menus = [];
 
-    //     foreach ($cursors as $cursor) {
-    //         $parent_id = !empty($cursor->parent_id) ? $cursor->parent_id : 0;
-    //         $menus[$parent_id][] = $cursor;
-    //     }
+        foreach ($cursors as $cursor) {
+            $parent_id = !empty($cursor->parent_id) ? $cursor->parent_id : 0;
+            $menus[$parent_id][] = $cursor;
+        }
 
-    //     $results = count($menus) > 0 ? self::parsingMenu($menus) : [];
-    //     return self::outputResult($results);
-    // }
+        $results = count($menus) > 0 ? self::parsingMenu($menus) : [];
+        return self::outputResult($results);
+    }
 
     public static function parsingMenu($menus, $parent_id = 0, $route = true)
     {
@@ -158,15 +158,15 @@ class MenuService extends BaseServices
     //     });
     // }
 
-    // public static function destroy($id)
-    // {
-    //     $query = Model::where('parent_id', $id)->count();
-    //     if ($query) {
-    //         return self::outputResult([], 422, __("Oops! Menu tidak dapat dihapus, karena memiliki turunan."));
-    //     }
+    public static function destroy($id)
+    {
+        $query = Model::where('parent_id', $id)->count();
+        if ($query) {
+            return self::outputResult([], 422, __("Oops! Menu tidak dapat dihapus, karena memiliki turunan."));
+        }
 
-    //     return Model::deleteOne($id);
-    // }
+        return Model::deleteOne($id);
+    }
 
     // public static function destroys($data)
     // {

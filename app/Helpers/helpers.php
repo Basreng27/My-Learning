@@ -8,6 +8,13 @@ if (!function_exists('template_gentelellaMaster')) {
     }
 };
 
+if (!function_exists('template_custom')) {
+    function template_custom()
+    {
+        return asset('custom');
+    }
+};
+
 // helper activitylog
 if (!function_exists('createActivityLog')) {
     /**

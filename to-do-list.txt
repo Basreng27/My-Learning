@@ -15,10 +15,10 @@ Login -> Done
 CSRF Login -> Done
 Middleware Page Login If Was Login -> Done
     Middleware Page Can't Go Dashboard If Not Login ->
-    Role In ACL.php (Middleware) ->
+Role In ACL.php (Middleware) -> Done
 Dashboard -> Done
     Activity Log ->
-    Module Menu ->
+    Module Menu (50%) ->
     Make Module ->
     CRUD ->
     CSRF CRUD ->

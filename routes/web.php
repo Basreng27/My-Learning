@@ -49,3 +49,7 @@ Route::group(['middleware' => ['verified', 'auth', 'acl']], function () {
 Route::get('/templates/admin/gentelellaMaster', function () {
     return view('templates.admins.gentelellaMaster.production.index');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -9,8 +9,8 @@ class HomeController extends BaseModule
 {
     public function __construct()
     {
-        $this->module       = 'home';
-        $this->pageTitle    = 'Dashboard';
+        $this->module = 'home';
+        $this->pageTitle = 'Dashboard';
         $this->pageSubTitle = 'Home';
         $this->permissionList = [
             "index" => ['index'],

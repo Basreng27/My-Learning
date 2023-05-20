@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>{{ config('app.name') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Bootstrap -->
     <link href="{{ template_gentelellaMaster() }}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -31,4 +31,6 @@
 
     <!-- Custom Theme Style -->
     <link href="{{ template_gentelellaMaster() }}/build/css/custom.min.css" rel="stylesheet">
+
+    @stack('style')
 </head>

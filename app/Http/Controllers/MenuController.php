@@ -23,8 +23,6 @@ class MenuController extends BaseModule
 
     public function data(Request $request)
     {
-        echo '<pre>' . print_r(321, true);
-        exit(1);
         $result = Service::data($request);
         return $this->serveJSON($result);
     }

@@ -163,7 +163,7 @@
                 <div class="dashboard_graph">
                     <div class="row x_title">
                         <div class="col-md-6">
-                            <a href="{{ route($module . '.create') }}" class="btn btn-primary" data-toggle="modal"
+                            <a href="{{ route('create-' . $module) }}" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modal-lg"><i class="fa fa-plus"></i> {{ __('Tambah') }}</a>
                         </div>
 
@@ -245,7 +245,7 @@
                 <a rel="tooltip" href="{{ route($module . '.edit', ['menu' => '__grid_doc__']) }}" title="{{ __('Edit') }}" class="btn btn-outline-secondary" data-toggle="modal-edit" data-target="#modal-lg">
                     <i class="fa fa-edit"></i>
                 </a>
-                <a rel="tooltip" href="{{ route($module . '-destroy', ['id' => '__grid_doc__']) }}" title="{{ __('Hapus') }}" class="btn btn-outline-danger btn-delete">
+                <a rel="tooltip" href="{{ route('destroy-' . $module, ['id' => '__grid_doc__']) }}" title="{{ __('Hapus') }}" class="btn btn-outline-danger btn-delete">
                     <i class="fa fa-trash"></i>
                 </a>
             </div>
@@ -315,7 +315,7 @@
 
         function dd_load() {
             $('#nestable-menu').html('loading...');
-            $.get('{{ route($module . '-data') }}', function(out) {
+            $.get('{{ route('data-' . $module) }}', function(out) {
 
                 $('#nestable-menu').html(dd_tree(out.data));
                 initModalAjax('[data-toggle="modal-edit"]');

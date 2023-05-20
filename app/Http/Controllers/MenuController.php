@@ -27,17 +27,19 @@ class MenuController extends BaseModule
         return $this->serveJSON($result);
     }
 
-    // public function create(Request $request)
-    // {
-    //     $listPermissionName = getListPermissionName();
-    //     $listPermissionName = array_merge(['' => 'Pilih'], $listPermissionName);
+    public function create(Request $request)
+    {
+        echo '<pre>' . print_r(321, true);
+        exit(1);
+        $listPermissionName = getListPermissionName();
+        $listPermissionName = array_merge(['' => 'Pilih'], $listPermissionName);
 
-    //     return $this->serveView([
-    //         'parent_id'   => !empty($request->parent_id) ? $request->parent_id : '',
-    //         'routes'      => Service::getRoutesAdmin(__('Pilih')),
-    //         'permissions' => $listPermissionName,
-    //     ], 'create');
-    // }
+        return $this->serveView([
+            'parent_id'   => !empty($request->parent_id) ? $request->parent_id : '',
+            'routes'      => Service::getRoutesAdmin(__('Pilih')),
+            'permissions' => $listPermissionName,
+        ], 'create');
+    }
 
     // public function store(Request $request)
     // {

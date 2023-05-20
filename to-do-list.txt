@@ -19,6 +19,7 @@ Role In ACL.php (Middleware) -> Done
 Dashboard -> Done
     Activity Log ->
     Module Menu (50%) ->
+    Input Text ->
     Make Module ->
     CRUD ->
     CSRF CRUD ->

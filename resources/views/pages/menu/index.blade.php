@@ -3,7 +3,6 @@
 @section('title', 'Menu')
 
 @push('style')
-    {{-- <link href="{{ asset(mix('plugins/css/nestable2/jquery.nestable.min.css')) }}" rel="stylesheet" type="text/css" /> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nestable2@1.6.0/jquery.nestable.min.css">
 
     <style type="text/css">
@@ -71,10 +70,6 @@
         .dd-hover>.dd-handle {
             background: #2ea8e5 !important;
         }
-
-        /**
-                                                                                                                                                                                                                                                                         * Nestable Draggable Handles
-                                                                                                                                                                                                                                                                         */
 
         .dd3-content {
             display: block;
@@ -162,64 +157,79 @@
 @endpush
 
 @section('content')
-    <!-- Default Light Table -->
-    <div class="row">
-        <div class="col">
-            <div class="card card-small mb-4">
-                <div class="card-header border-bottom py-3">
-                    <a href="{{ route($module . '.create') }}" class="btn btn-primary btn-sm" data-toggle="modal"
-                        data-target="#modal-lg"><i class="mdi mdi-plus"></i> {{ __('Tambah') }}</a>
-                    <div class="btn-group btn-group-sm float-right" role="Table row actions">
-                        <button type="button" class="btn btn-danger btn-sm"
-                            data-action="collapse-all">{{ __('Tutup Semua') }}</button>
-                        <button type="button" class="btn btn-success btn-sm"
-                            data-action="expand-all">{{ __('Melebarkan semua') }}</button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <div id="nestable-empty" class="alert alert-warning alert-dismissible fade" role="alert">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <strong>Oops!</strong> {{ __('Tidak ada menu yang tersedia') }}.
-                            </div>
-                            <div id="nestable-change-order" class="alert alert-info alert-dismissible fade show pr-3"
-                                role="alert" style="display:none;">
-                                <div class="row">
-                                    <div class="col-10 align-self-center">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                        {{ __('Urutan menu telah diubah, klik tombol dibawah untuk meperbaharui urutan') }}.
-                                    </div>
-                                    <div class="col-2 text-right">
-                                        {{ Form::open(['id' => 'form-order-menus', 'route' => [$module . '-saveOrder'], 'method' => 'put', 'autocomplete' => 'off']) }}
-                                        <textarea style="display:none;" id="nestable-menu-output-ori"></textarea>
-                                        <textarea name="sequence" style="display:none;" id="nestable-menu-output"></textarea>
-                                        <button type="submit" class="btn btn-primary btn-sm" data-action="save-order"><i
-                                                class="mdi mdi-content-save"></i>
-                                            Simpan Urutan</button>
-                                        {!! Form::close() !!}
-                                    </div>
+    <div class="right_col" role="main">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="dashboard_graph">
+                    <div class="row x_title">
+                        <div class="col-md-6">
+                            <a href="{{ route($module . '.create') }}" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modal-lg"><i class="fa fa-plus"></i> {{ __('Tambah') }}</a>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="btn-group btn-group-sm float-right" role="Table row actions">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <button class="btn btn-secondary" data-toggle-class="btn-primary"
+                                        data-toggle-passive-class="btn-default">
+                                        {{ __('Tutup Semua') }}
+                                    </button>
+                                    <button class="btn btn-primary" data-toggle-class="btn-primary"
+                                        data-toggle-passive-class="btn-default">
+                                        {{ __('Melebarkan Semua') }}
+                                    </button>
                                 </div>
+                                {{-- <button type="button" class="btn btn-danger btn-sm"
+                                    data-action="collapse-all">{{ __('Tutup Semua') }}</button>
+                                <button type="button" class="btn btn-success btn-sm"
+                                    data-action="expand-all">{{ __('Melebarkan semua') }}</button> --}}
                             </div>
-                            <div id="nestable-menu" class="dd"></div>
                         </div>
                     </div>
+
+                    <div class="col-md-12 col-sm-12 ">
+                        <div class="row">
+                            <div class="col">
+                                <div id="nestable-empty" class="alert alert-warning alert-dismissible fade" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <strong>Oops!</strong> {{ __('Tidak ada menu yang tersedia') }}.
+                                </div>
+
+                                <div id="nestable-change-order" class="alert alert-info alert-dismissible fade show pr-3"
+                                    role="alert" style="display:none;">
+                                    <div class="row">
+                                        <div class="col-10 align-self-center">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            {{ __('Urutan menu telah diubah, klik tombol dibawah untuk meperbaharui urutan') }}.
+                                        </div>
+
+                                        <div class="col-2 text-right">
+                                            {{ Form::open(['id' => 'form-order-menus', 'route' => [$module . '-saveOrder'], 'method' => 'put', 'autocomplete' => 'off']) }}
+                                            <textarea style="display:none;" id="nestable-menu-output-ori"></textarea>
+                                            <textarea name="sequence" style="display:none;" id="nestable-menu-output"></textarea>
+                                            <button type="submit" class="btn btn-primary btn-sm"
+                                                data-action="save-order"><i class="mdi mdi-content-save"></i>
+                                                Simpan Urutan</button>
+                                            {!! Form::close() !!}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="nestable-menu" class="dd"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Default Light Table -->
-
 @endsection
 
 @push('plugin-scripts')
     <script src="{{ template_custom() }}/handlebars/handlebars.min.js"></script>
-
-    {{-- <script src="https://cdn.jsdelivr.net/npm/handlebars@4.8.0/dist/handlebars.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/nestable2@1.6.0/jquery.nestable.min.js"></script>
-
-    {{-- <script src="{{ asset(mix('plugins/js/handlebars/handlebars.min.js')) }}"></script> --}}
-    {{-- <script src="{{ asset(mix('plugins/js/nestable2/jquery.nestable.min.js')) }}"></script> --}}
 @endpush
 
 @push('custom-scripts')
@@ -230,13 +240,13 @@
 
             <div role="group" class="btn-group btn-group-sm float-right" role="Table row actions">
                 <a rel="tooltip" href="{{ route($module . '.create') }}?parent_id=__grid_doc__" title="{{ __('Tambah Turunan') }}" class="btn btn-outline-success" data-toggle="modal-edit" data-target="#modal-lg">
-                    <i class="fas fa-plus"></i>
+                    <i class="fa fa-plus"></i>
                 </a>
                 <a rel="tooltip" href="{{ route($module . '.edit', ['menu' => '__grid_doc__']) }}" title="{{ __('Edit') }}" class="btn btn-outline-secondary" data-toggle="modal-edit" data-target="#modal-lg">
-                    <i class="fas fa-edit"></i>
+                    <i class="fa fa-edit"></i>
                 </a>
                 <a rel="tooltip" href="{{ route($module . '-destroy', ['id' => '__grid_doc__']) }}" title="{{ __('Hapus') }}" class="btn btn-outline-danger btn-delete">
-                    <i class="fas fa-trash-alt"></i>
+                    <i class="fa fa-trash"></i>
                 </a>
             </div>
         </div>

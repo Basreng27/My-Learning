@@ -34,6 +34,7 @@ Dashboard -> Done
     RestFull API ->
     Get Data API Movie ->
     Payment Gateway ->
+Logout -> Done
 
 -> React JS
 -> Fluter

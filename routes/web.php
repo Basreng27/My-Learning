@@ -29,6 +29,9 @@ Route::prefix('/login')->middleware('guest')
         Route::post('proses-login', [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name('proses-login');
     });
 
+// logout
+Route::get('logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
+
 Route::group(['middleware' => ['verified', 'auth', 'acl']], function () {
     // Home
     Route::get('home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');

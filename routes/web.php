@@ -42,8 +42,8 @@ Route::group(['middleware' => ['verified', 'auth', 'acl']], function () {
         // Menu
         Route::resource('menu', \App\Http\Controllers\MenuController::class, ['names' => 'menu']);
         Route::get('create-menu', [\App\Http\Controllers\MenuController::class, 'create'])->name('create-menu');
-        // Route::post('create-menu', [\App\Http\Controllers\MenuController::class, 'create'])->name('create-menu');
-        Route::delete('destroy-menu/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('destroy-menu');
+        // Route::delete('destroy-menu/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('destroy-menu');
+        Route::get('destroy-menu/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('destroy-menu');
         Route::get('data-menu', [\App\Http\Controllers\MenuController::class, 'data'])->name('data-menu');
         Route::get('edit-menu/{menu}', [\App\Http\Controllers\MenuController::class, 'edit'])->name('edit-menu');
         // Route::put('edit-menu/{menu}', [\App\Http\Controllers\MenuController::class, 'edit'])->name('edit-menu');

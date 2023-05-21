@@ -81,10 +81,10 @@ class MenuController extends BaseModule
     //     return $this->serveJSON($result);
     // }
 
-    // public function saveOrder(Request $request)
-    // {
-    //     $result = Service::saveOrder($request);
+    public function saveOrder(Request $request)
+    {
+        $result = Service::saveOrder($request);
 
-    //     return $this->serveJSON($result);
-    // }
+        return $this->serveJSON($result);
+    }
 }

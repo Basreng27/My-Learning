@@ -188,11 +188,18 @@ class MenuService extends BaseServices
     public static function destroy($id)
     {
         $query = Model::where('parent_id', $id)->count();
-        if ($query) {
-            return self::outputResult([], 422, __("Oops! Menu tidak dapat dihapus, karena memiliki turunan."));
-        }
 
-        return Model::deleteOne($id);
+        if ($query)
+            return self::outputResult([], 422, __("Oops! Menu tidak dapat dihapus, karena memiliki turunan."));
+
+        // return Model::deleted($id);
+
+        return DB::transaction(function () use ($id) {
+            $menu = Model::findOrFail($id);
+            $menu->delete();
+
+            return $menu;
+        });
     }
 
     // public static function destroys($data)

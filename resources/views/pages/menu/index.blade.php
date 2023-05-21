@@ -199,7 +199,7 @@
                                     role="alert" style="display:none;">
                                     <div class="row">
                                         <div class="col-10 align-self-center">
-                                            <i class="fas fa-exclamation-triangle"></i>
+                                            <i class="fa fa-exclamation-triangle"></i>
                                             {{ __('Urutan menu telah diubah, klik tombol dibawah untuk meperbaharui urutan') }}.
                                         </div>
 

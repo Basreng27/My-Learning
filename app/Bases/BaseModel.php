@@ -2,6 +2,7 @@
 
 namespace App\Bases;
 
+use App\Models\Menu;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use App\Traits\ModelScopes;

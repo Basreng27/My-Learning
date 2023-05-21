@@ -243,7 +243,7 @@
                 <a rel="tooltip" href="{{ route($module . '.create') }}?parent_id=__grid_doc__" title="{{ __('Tambah Turunan') }}" class="btn btn-outline-success" data-toggle="modal-edit" data-target="#modal-lg">
                     <i class="fa fa-plus"></i>
                 </a>
-                <a rel="tooltip" href="{{ route($module . '.edit', ['menu' => '__grid_doc__']) }}" title="{{ __('Edit') }}" class="btn btn-outline-secondary" data-toggle="modal-edit" data-target="#modal-lg">
+                <a rel="tooltip" href="{{ route('edit-' . $module, ['menu' => '__grid_doc__']) }}" title="{{ __('Edit') }}" class="btn btn-outline-secondary" data-toggle="modal-edit" data-target="#modal-lg">
                     <i class="fa fa-edit"></i>
                 </a>
                 <a rel="tooltip" href="{{ route('destroy-' . $module, ['id' => '__grid_doc__']) }}" title="{{ __('Hapus') }}" class="btn btn-outline-danger btn-delete">

@@ -60,12 +60,12 @@ class MenuController extends BaseModule
         ], 'edit');
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $result = Service::update(decrypt($id), $request);
+    public function update(Request $request, $id)
+    {
+        $result = Service::update(decrypt($id), $request);
 
-    //     return $this->serveJSON($result);
-    // }
+        return $this->serveJSON($result);
+    }
 
     public function destroy($id)
     {

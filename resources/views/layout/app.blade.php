@@ -22,6 +22,8 @@
         </div>
     </div>
 
+    @include('layout.partials.modal')
+
     @include('layout.partials.footer')
 
 </body>

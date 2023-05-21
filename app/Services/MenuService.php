@@ -42,9 +42,8 @@ class MenuService extends BaseServices
                     'permissions' => MenuService::hasPermissions($menu->id)
                 ];
 
-                if (isset($menus[$menu->id])) {
+                if (isset($menus[$menu->id]))
                     $data['children'] = self::parsingMenu($menus, $menu->id);
-                }
 
                 $results[] = $data;
             }
@@ -53,62 +52,91 @@ class MenuService extends BaseServices
         return $results;
     }
 
-    // public static function store($data)
-    // {
-    //     return Model::transaction(function () use ($data) {
-    //         return Model::createOne([
-    //             'custom_url'      => $data['custom_url'] ? 1 : 0,
-    //             'code'            => $data['code'],
-    //             'name'            => $data['name'],
-    //             'url'             => $data['custom_url'] ? $data['url'] : $data['route'],
-    //             'icon'            => $data['icon'],
-    //             'description'     => $data['description'],
-    //             'category'        => $data['category'],
-    //             'parent_id'       => !empty($data['parent_id']) ? decrypt($data['parent_id']) : NULL,
-    //         ], function ($query, $event) use ($data) {
-    //             $features = [];
-    //             $index = 0;
-    //             if (!empty($data['features'])) {
-    //                 foreach ($data['features'] as $item) {
-    //                     $permissionName = ($data['code'] . '-' . $item['permission_id']);
-    //                     $permissionId = null;
+    public static function store($data)
+    {
+        $features = [];
+        $index = 0;
 
-    //                     $permission = Permission::where('name', $permissionName)->first();
-    //                     if ($permission == null) {
-    //                         $store = new Permission;
-    //                         $store->name = $permissionName;
-    //                         $store->guard_name = 'web';
-    //                         $store->save();
+        if (!empty($data['features'])) {
+            foreach ($data['features'] as $item) {
+                $permissionName = ($data['code'] . '-' . $item);
+                $permissionId = null;
 
-    //                         $permissionId = $store->id;
-    //                     } else {
-    //                         $permissionId = $permission->id;
-    //                     }
+                $permission = Permission::where('name', $permissionName)->first();
+                if ($permission == null) {
+                    $store = new Permission;
+                    $store->name = $permissionName;
+                    $store->guard_name = 'web';
+                    $store->save();
 
-    //                     $features[] = [
-    //                         'name' => getListPermissionName()[$item['permission_id']],
-    //                         'permission_id' => $permissionId,
-    //                         'sequence' => $index,
-    //                     ];
+                    $permissionId = $store->id;
+                } else {
+                    $permissionId = $permission->id;
+                }
 
-    //                     $index++;
-    //                 }
-    //             }
+                $features[] = [
+                    'name' => getListPermissionName()[$item],
+                    'permission_id' => $permissionId,
+                    'sequence' => $index,
+                ];
 
-    //             $event->permissions()->attach($features);
-    //         });
-    //     });
-    // }
+                $index++;
+            }
+        }
 
-    // public static function get($id)
-    // {
-    //     $query = Model::find($id);
-    //     if ($query) {
-    //         return $query;
-    //     }
+        return DB::transaction(function () use ($data) {
+            return Model::createOne([
+                'code' => $data['code'],
+                'name' => $data['name'],
+                'url' => $data['route'],
+                'icon' => $data['icon'],
+                'parent_id' => !empty($data['parent_id']) ? decrypt($data['parent_id']) : NULL,
+            ]);
+            // , function ($query, $event) use ($data) {
+            //     $features = [];
+            //     $index = 0;
 
-    //     return false;
-    // }
+            //     if (!empty($data['features'])) {
+            //         foreach ($data['features'] as $item) {
+            //             $permissionName = ($data['code'] . '-' . $item['permission_id']);
+            //             $permissionId = null;
+
+            //             $permission = Permission::where('name', $permissionName)->first();
+            //             if ($permission == null) {
+            //                 $store = new Permission;
+            //                 $store->name = $permissionName;
+            //                 $store->guard_name = 'web';
+            //                 $store->save();
+
+            //                 $permissionId = $store->id;
+            //             } else {
+            //                 $permissionId = $permission->id;
+            //             }
+
+            //             $features[] = [
+            //                 'name' => getListPermissionName()[$item['permission_id']],
+            //                 'permission_id' => $permissionId,
+            //                 'sequence' => $index,
+            //             ];
+
+            //             $index++;
+            //         }
+            //     }
+
+            //     $event->permissions()->attach($features);
+            // });
+        });
+    }
+
+    public static function get($id)
+    {
+        $query = Model::find($id);
+
+        if ($query)
+            return $query;
+
+        return false;
+    }
 
     // public static function update($id, $data)
     // {
@@ -180,26 +208,25 @@ class MenuService extends BaseServices
     //     });
     // }
 
-    // public static function getRoutesAdmin($default = null)
-    // {
+    public static function getRoutesAdmin($default = null)
+    {
 
-    //     $routeCollection = Route::getRoutes();
-    //     $routes = [];
-    //     if (!empty($default)) {
-    //         $routes = ['' => $default];
-    //     }
+        $routeCollection = Route::getRoutes();
+        $routes = [];
 
-    //     foreach ($routeCollection as $route) {
-    //         $route_name = $route->getName();
+        if (!empty($default))
+            $routes = ['' => $default];
 
-    //         if (!empty($route_name)) {
-    //             if (in_array('GET', $route->methods()) && count($route->parameterNames()) == 0) {
-    //                 $routes[$route_name] = $route_name;
-    //             }
-    //         }
-    //     }
-    //     return $routes;
-    // }
+        foreach ($routeCollection as $route) {
+            $route_name = $route->getName();
+
+            if (!empty($route_name))
+                if (in_array('GET', $route->methods()) && count($route->parameterNames()) == 0)
+                    $routes[$route_name] = $route_name;
+        }
+
+        return $routes;
+    }
 
     // public static function getPermission($default = null)
     // {
@@ -270,8 +297,8 @@ class MenuService extends BaseServices
     public static function generateMenu($category = 'admin')
     {
         $_menus = [];
-
         $auth = auth()->user();
+
         if ($auth != null) {
             $auth = $auth->load('roles.menus');
             if (!empty($auth->roles->first())) {
@@ -283,9 +310,8 @@ class MenuService extends BaseServices
                 }
 
                 return self::parsingMenu($_menus, 0, false);
-            } else {
+            } else
                 return $_menus;
-            }
         }
     }
 

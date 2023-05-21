@@ -229,6 +229,7 @@
 
 @push('plugin-scripts')
     <script src="{{ template_custom() }}/handlebars/handlebars.min.js"></script>
+    {{-- <script src="{{ template_custom() }}/uuid-js/uuid.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/nestable2@1.6.0/jquery.nestable.min.js"></script>
 @endpush
 

@@ -28,6 +28,14 @@
     <!-- bootstrap-daterangepicker -->
     <link href="{{ template_gentelellaMaster() }}/vendors/bootstrap-daterangepicker/daterangepicker.css"
         rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="{{ template_gentelellaMaster() }}/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet" />
+    <!-- Select2 -->
+    <link href="{{ template_gentelellaMaster() }}/vendors/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Switchery -->
+    <link href="{{ template_gentelellaMaster() }}/vendors/switchery/dist/switchery.min.css" rel="stylesheet" />
+    <!-- starrr -->
+    <link href="{{ template_gentelellaMaster() }}/vendors/starrr/dist/starrr.css" rel="stylesheet" />
 
     <!-- Custom Theme Style -->
     <link href="{{ template_gentelellaMaster() }}/build/css/custom.min.css" rel="stylesheet">

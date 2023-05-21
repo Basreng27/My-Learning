@@ -1,25 +1,26 @@
-@extends('layouts.modal')
+@extends('layout.modal')
 
 @section('title', __('Form Tambah'))
 
 @section('content')
     {{ Form::open(['id' => 'my-form', 'route' => $module . '.store', 'method' => 'post', 'autocomplete' => 'off']) }}
     <input type="hidden" name="parent_id" value="{{ $parent_id }}">
-    <input type="hidden" name="category" value="admin">
     <div class="modal-body pb-2">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group row">
-                    <label for="name" class="col-sm-3 col-form-label">{{ __('Label') }}<sup>*</sup></label>
+                    <label for="name" class="col-sm-3 col-form-label">{{ __('Label') }} <span
+                            class="required">*</span></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="name" id="name">
+                        <input type="text" class="form-control" name="name" id="name" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="code" class="col-sm-3 col-form-label">{{ __('Code') }}<sup>*</sup></label>
+                    <label for="code" class="col-sm-3 col-form-label">{{ __('Code') }} <span
+                            class="required">*</span></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="code" id="code">
+                        <input type="text" class="form-control" name="code" id="code" required>
                     </div>
                 </div>
 
@@ -30,37 +31,15 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for="description" class="col-sm-3 col-form-label">{{ __('Keterangan') }}</label>
-                    <div class="col-sm-9">
-                        <textarea class="form-control" name="description" id="description"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">{{ __('Custom URL') }}</label>
-                    <div class="col-sm-8">
-                        <div class="cb-dynamic-label custom-control custom-toggle custom-toggle-sm mb-1 mt-1">
-                            <input type="checkbox" id="custom_url" name="custom_url" value="1"
-                                class="custom-control-input" data-text-on="{{ __('Ya') }}"
-                                data-text-off="{{ __('Tidak') }}">
-                            <label class="custom-control-label text-muted" for="custom_url"></label>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="form-group row box-routes">
-                    <label for="route" class="col-sm-4 col-form-label">{{ __('Route') }}<sup>*</sup></label>
-                    <div class="col-sm-8">
-                        {{ Form::select('route', $routes, null, ['class' => 'form-control select2']) }}
-                    </div>
-                </div>
-
-                <div class="form-group row box-custom">
-                    <label for="url" class="col-sm-4 col-form-label">{{ __('URL') }}<sup>*</sup></label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" name="url" id="url">
+                    <label for="route" class="col-sm-3 col-form-label">{{ __('Route') }} <span
+                            class="required">*</span></label>
+                    <div class="col-sm-9">
+                        <select class="select2_single form-control" name="route" tabindex="-1">
+                            @foreach ($routes as $route)
+                                <option value="{{ $route }}">{{ $route }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>
@@ -68,6 +47,7 @@
 
         @include('pages.' . $module . '.feature', ['permissions' => $permissions])
     </div>
+
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Tutup') }}</button>
         <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
@@ -76,7 +56,7 @@
 @endsection
 
 @push('custom-scripts')
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         function box(s) {
             if (s) {
                 $('.box-routes').hide();
@@ -86,6 +66,7 @@
                 $('.box-custom').hide();
             }
         }
+
         $(function() {
             initPage();
             $('.select2').select2({
@@ -115,6 +96,6 @@
 
                 box($(this).is(':checked'));
             });
-        })
-    </script>
+        });
+    </script> --}}
 @endpush

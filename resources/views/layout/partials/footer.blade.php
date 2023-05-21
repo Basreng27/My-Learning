@@ -35,6 +35,25 @@
 <!-- bootstrap-daterangepicker -->
 <script src="{{ template_gentelellaMaster() }}/vendors/moment/min/moment.min.js"></script>
 <script src="{{ template_gentelellaMaster() }}/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap-wysiwyg -->
+<script src="{{ template_gentelellaMaster() }}/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+<script src="{{ template_gentelellaMaster() }}/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+<script src="{{ template_gentelellaMaster() }}/vendors/google-code-prettify/src/prettify.js"></script>
+<!-- jQuery Tags Input -->
+<script src="{{ template_gentelellaMaster() }}/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="{{ template_gentelellaMaster() }}/vendors/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="{{ template_gentelellaMaster() }}/vendors/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="{{ template_gentelellaMaster() }}/vendors/parsleyjs/dist/parsley.min.js"></script>
+<!-- Autosize -->
+<script src="{{ template_gentelellaMaster() }}/vendors/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="{{ template_gentelellaMaster() }}/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js">
+</script>
+<!-- starrr -->
+<script src="{{ template_gentelellaMaster() }}/vendors/starrr/dist/starrr.js"></script>
 
 <!-- Custom Theme Scripts -->
 <script src="{{ template_gentelellaMaster() }}/build/js/custom.min.js"></script>

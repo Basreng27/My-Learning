@@ -34,3 +34,21 @@ if (!function_exists('createActivityLog')) {
         }
     }
 }
+
+// permission
+if (!function_exists('getListPermissionName')) {
+    function getListPermissionName()
+    {
+        return [
+            'index' => 'Lihat',
+            'show' => 'Detail',
+            'create' => 'Buat',
+            'edit' => 'Ubah',
+            'delete' => 'Hapus',
+            'approve' => 'Persetujuan',
+            'import' => 'Impor',
+            'export' => 'Cetak',
+            'execute' => 'Eksekusi'
+        ];
+    }
+}

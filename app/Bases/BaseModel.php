@@ -13,6 +13,19 @@ class BaseModel extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+
+    public static function createOne(array $data, $callback = null)
+    {
+        $model = new static;
+        $model->fill($data);
+
+        if ($callback)
+            $callback($model);
+
+        $model->save();
+        return $model;
+    }
+
     // public function getCreatedAtAttribute($value)
     // {
     //     return $this->attributes['created_at'] = formatDefaultDateTime($value);

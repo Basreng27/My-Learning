@@ -58,8 +58,8 @@
 <!-- Custom Theme Scripts -->
 <script src="{{ template_gentelellaMaster() }}/build/js/custom.min.js"></script>
 
-<script src="{{ template_custom() }}/app.js"></script>
-<script src="{{ template_custom() }}/app.min.js"></script>
+{{-- <script src="{{ template_custom() }}/app.js"></script> --}}
+{{-- <script src="{{ template_custom() }}/app.min.js"></script> --}}
 
 @stack('plugin-scripts')
 
